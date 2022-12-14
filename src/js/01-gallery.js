@@ -36,7 +36,7 @@ function getOriginalImgLinkOnClick(evt) {
 };
 
 function openModalWindowGallery(source) {
-    let gallery = new SimpleLightbox('.gallery a');
+    let gallery = new SimpleLightbox('.gallery a', { scrollZoom: false});
     gallery.on('show.simplelightbox', function () {
         `<div class="modal">
            <img  src="${source}" width="1280" height="800" />
