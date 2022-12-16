@@ -12,13 +12,6 @@ messageInput.addEventListener('input', throttle(saveDataOnImput, 500));
 
 updateInputs();
 
-function onFormSubmit(e) {
-    e.preventDefault();
-
-    feedbackForm.reset();
-    showFeedback();
-};
-
 function saveDataOnImput() {
     const feedback = {
         email: emailInput.value,
@@ -26,7 +19,22 @@ function saveDataOnImput() {
     }
     save(LOCALSTORAGE_KEY, feedback);
 };
-       
+
+function onFormSubmit(e) {
+    e.preventDefault();
+
+    const email = emailInput.value;
+    const message = messageInput.value;
+    if (!email || !message) {
+        alert('Fill all field please');
+        return;
+    }
+
+    showFeedback();
+    feedbackForm.reset();
+    clearLocalStorage();
+};
+   
 function showFeedback() {
     const feedback = load(LOCALSTORAGE_KEY);
     console.log(feedback);
@@ -37,6 +45,8 @@ function updateInputs() {
 
     emailInput.value = storageData.email || '';
     messageInput.value = storageData.message || '';
+};
 
+function clearLocalStorage() {
     remove(LOCALSTORAGE_KEY);
 };
