@@ -6,7 +6,6 @@ const emailInput = document.querySelector('.js-feedback-form input');
 const messageInput = document.querySelector('.js-feedback-form textarea');
 const LOCALSTORAGE_KEY = "feedback-form-state";
 
-
 feedbackForm.addEventListener('submit', onFormSubmit);
 emailInput.addEventListener('input', throttle(saveDataOnImput, 500));
 messageInput.addEventListener('input', throttle(saveDataOnImput, 500));
@@ -29,12 +28,8 @@ function saveDataOnImput() {
 };
        
 function showFeedback() {
-    try {
-        const feedback = load(LOCALSTORAGE_KEY);
-        console.log(feedback);
-    } catch (e) {
-        console.log(e.message);
-    }
+    const feedback = load(LOCALSTORAGE_KEY);
+    console.log(feedback);
 };
 
 function updateInputs() {
